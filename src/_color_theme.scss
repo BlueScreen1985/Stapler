@@ -1,0 +1,13 @@
+// Define the app colors
+
+@function color($key) {
+  @return map-get($app-colors, $key);
+}
+
+$app-colors: (
+  primary: #c62828,
+
+  text-default: rgba(0, 0, 0, 0.87),
+  text-light: rgba(0, 0, 0, 0.60),
+  text-disabled: rgba(0, 0, 0, 0.38)
+);

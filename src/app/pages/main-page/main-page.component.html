@@ -1,0 +1,75 @@
+<div class="page-container">
+  <app-sidebar (addFiles)="addDocuments()" (save)="composeAndSave()" (new)="newProject()"></app-sidebar>
+  <div class="page-content" *ngIf="sourceDocuments">
+    <mat-form-field class="export-filename-field">
+      <mat-label>Exported filename</mat-label>
+      <input matInput value="file" [(ngModel)]="filename">
+      <span matSuffix>.pdf</span>
+    </mat-form-field>
+    <div class="source-documents-list">
+      <div class="border-card">
+        <div class="list-header">
+          <h4>Including {{sourceDocuments.length}} documents</h4>
+
+          <button mat-icon-button color="primary" (click)="addDocuments()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div cdkDropList (cdkDropListDropped)="drop($event)">
+          <div cdkDrag *ngFor="let document of sourceDocuments; let i = index"
+            class="list-item-border fake-mat-list-item fake-mat-2-line">
+            <div class="fake-mat-list-item-content">
+              <div class="fake-mat-list-text">
+                <h4 class="fake-mat-line">{{document.filename}}</h4>
+                <p class="fake-mat-line text-light">{{getDocumentUsedPagesDisplayString(document)}}</p>
+              </div>
+
+              <mat-menu #optionsMenu="matMenu" overlapTrigger="true">
+                <h5 class="menu-header">Include:</h5>
+                <mat-radio-group class="menu-radio-group" [(ngModel)]="document.usePages">
+                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="ALL">
+                    Whole document</mat-radio-button>
+                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="RANGE"
+                    [disabled]="document.pageCount == 1">Range</mat-radio-button>
+                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="SELECT"
+                    [disabled]="document.pageCount == 1">Specific pages</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'RANGE'"
+                  (click)="$event.stopPropagation()">
+                  <mat-label>Range</mat-label>
+                  <input matInput placeholder="e.g 2-5" (keyup)="rangeInputChange(document, $event.target.value)"
+                    [value]="getDocumentPageRange(document)">
+                </mat-form-field>
+                <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'SELECT'"
+                  (click)="$event.stopPropagation()">
+                  <mat-label>Pages</mat-label>
+                  <input matInput placeholder="e.g 1,2,6,7" (keyup)="pagesInputChange(document, $event.target.value)"
+                    [value]="getDocumentPageSelection(document)">
+                </mat-form-field>
+
+                <button mat-menu-item (click)="removeDocument(document)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Remove</span>
+                </button>
+              </mat-menu>
+
+              <button mat-icon-button [matMenuTriggerFor]="optionsMenu" color="primary">
+                <mat-icon>settings</mat-icon>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-light">Drag and drop documents to change the order in which they'll be added</p>
+    </div>
+  </div>
+  <div class="page-content" *ngIf="!sourceDocuments">
+    <div class="welcome">
+      <img class="welcome-logo" src="assets/img/logo-welcome-screen.svg">
+      <h1 class="welcome-title">Welcome</h1>
+      <p class="welcome-message">To start, create a new file by clicking 'New file' or adding some files directly</p>
+    </div>
+  </div>
+</div>
