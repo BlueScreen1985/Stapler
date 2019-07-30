@@ -90,3 +90,11 @@
     margin-top: 50px;
   }
 }
+
+.working-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.60);
+}

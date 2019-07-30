@@ -11,23 +11,36 @@ import { PdfService } from 'src/app/services/pdf.service';
 export class MainPageComponent {
   public sourceDocuments: SourceDocument[];
   public filename: string;
+  public working: boolean = false;
 
   constructor(private pdfService: PdfService) {}
 
   public addDocuments(): void {
+    this.working = true;
     this.pdfService.openDocuments().then((documents: SourceDocument[]) => {
       if (!this.sourceDocuments) {
         this.newProject();
       }
 
       this.sourceDocuments = this.sourceDocuments.concat(documents);
-    }).catch(err => console.log(err));
+      this.working = false;
+    }).catch(err => {
+      console.log(err); // TODO: Show an error message
+      this.working = false;
+    });
   }
 
   public composeAndSave(): void {
+    this.working = true;
     this.pdfService.composeAndSave(this.sourceDocuments, this.filename)
-    .then(() => console.log('Save file success'))
-    .catch(err => console.log(err));
+    .then(() => {
+      console.log('Save file success');
+      this.working = false;
+    })
+    .catch(err => {
+      console.log(err); // TODO: Show an error message
+      this.working = false;
+    });
   }
 
   public removeDocument(document: SourceDocument): void {

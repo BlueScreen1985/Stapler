@@ -26,6 +26,15 @@ div.border-card {
   font-size: 0.8em;
 }
 
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+}
+
 // Material menu parts
 .menu-header {
   color: color(text-light);
