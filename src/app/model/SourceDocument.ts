@@ -48,7 +48,7 @@ export class SourceDocument {
         }
         return pages;
       case SourcePages.SELECT:
-        if (!this.useRange) {
+        if (!this.useSelection) {
           return [];
         }
         return this.useSelection;
