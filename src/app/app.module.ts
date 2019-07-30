@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // App imports
 import { AppRoutingModule } from './app-routing.module';
@@ -55,6 +56,7 @@ import 'hammerjs';
     MatSlideToggleModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     NgxElectronModule
   ],
   providers: [],

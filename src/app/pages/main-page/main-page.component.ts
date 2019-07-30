@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SourceDocument, SourcePages } from 'src/app/model/SourceDocument';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PdfService } from 'src/app/services/pdf.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main-page',
@@ -13,7 +14,7 @@ export class MainPageComponent {
   public filename: string;
   public working: boolean = false;
 
-  constructor(private pdfService: PdfService) {}
+  constructor(private pdfService: PdfService, private snackBar: MatSnackBar) {}
 
   public addDocuments(): void {
     this.working = true;
@@ -25,7 +26,10 @@ export class MainPageComponent {
       this.sourceDocuments = this.sourceDocuments.concat(documents);
       this.working = false;
     }).catch(err => {
-      console.log(err); // TODO: Show an error message
+      console.log(JSON.stringify(err));
+      if (err.isError) {
+        this.showSnackBar('💩 Something went wrong. See the developer console for details');
+      }
       this.working = false;
     });
   }
@@ -34,11 +38,14 @@ export class MainPageComponent {
     this.working = true;
     this.pdfService.composeAndSave(this.sourceDocuments, this.filename)
     .then(() => {
-      console.log('Save file success');
+      this.showSnackBar('💾 File saved!');
       this.working = false;
     })
     .catch(err => {
-      console.log(err); // TODO: Show an error message
+      console.log(JSON.stringify(err));
+      if (err.isError) {
+        this.showSnackBar('💩 Something went wrong. See the developer console for details');
+      }
       this.working = false;
     });
   }
@@ -113,5 +120,13 @@ export class MainPageComponent {
 
   public drop(event: CdkDragDrop<SourceDocument[]>) {
     moveItemInArray(this.sourceDocuments, event.previousIndex, event.currentIndex);
+  }
+
+  public showSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 }

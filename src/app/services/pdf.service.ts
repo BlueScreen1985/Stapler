@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { PDFDocument, PDFFlateStream, PDFPage } from 'pdf-lib';
 import { SourceDocument } from '../model/SourceDocument';
 import { ElectronService } from 'ngx-electron';
+import { isError } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,10 @@ export class PdfService {
   public openDocuments(): Promise<SourceDocument[]> {
     return new Promise((resolve, reject) => {
       if (!this.electron.isElectronApp) {
-        reject('This is not an electron app!');
+        reject({
+          isError: true,
+          error: 'This is not an electron app!'
+        });
       }
 
       // Tell Electron's main process to open a native open file dialog, and listen for its reply containing the files read
@@ -43,17 +47,29 @@ export class PdfService {
               }
 
               resolve(sourceDocuments);
-            }).catch(err => reject(err));
+            }).catch(err => reject({
+              isError: true,
+              error: err
+            }));
           }
           else {
-            reject('Read 0 files. Dialog may have been canceled, or something went wrong.');
+            reject({
+              isError: true,
+              error: 'Read 0 files. Dialog may have been canceled, or something went wrong.'
+            });
           }
         }
         else if (args.status == 'canceled') {
-          reject('User canceled the dialog. No files were read.');
+          reject({
+            isError: false,
+            reason: 'User canceled the dialog. No files were read.'
+          });
         }
         else if (args.status == 'error') {
-          reject(args.err);
+          reject({
+            isError: true,
+            error: args.err
+          });
         }
       });
     });
@@ -70,7 +86,10 @@ export class PdfService {
   public composeAndSave(sourceDocuments: SourceDocument[], filename: string = ''): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.electron.isElectronApp) {
-        reject('This is not an electron app!');
+        reject({
+          isError: true,
+          error: 'This is not an electron app!'
+        });
       }
 
       this.compose(sourceDocuments).then((composed: PDFDocument) => {
@@ -86,14 +105,26 @@ export class PdfService {
               resolve();
             }
             else if (args.status == 'canceled') {
-              reject('User canceled the dialog. File was not saved.');
+              reject({
+                isError: false,
+                reason: 'User canceled the dialog. File was not saved.'
+              });
             }
             else if (args.status == 'error') {
-              reject(args.err);
+              reject({
+                isError: true,
+                error: args.err
+              });
             }
           });
-        }).catch(err => reject(err));
-      }).catch(err => reject(err));
+        }).catch(err => reject({
+          isError: true,
+          error: err
+        }));
+      }).catch(err => reject({
+        isError: true,
+        error: err
+      }));
     });
   }
 
