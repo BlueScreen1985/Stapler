@@ -21,7 +21,6 @@ export class MainPageComponent {
       }
 
       this.sourceDocuments = this.sourceDocuments.concat(documents);
-      console.log(JSON.stringify(this.sourceDocuments));
     }).catch(err => console.log(err));
   }
 
