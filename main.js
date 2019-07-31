@@ -126,26 +126,13 @@ ipc.on('save-file', (event, args) => {
 
 
 // Load/save settings file
-// Shitty code but the settings are literally a fucking two letter string so who gives a flying fuck
-// TODO: rewrite properly if the app ever gets real settings
 ipc.on('load-settings', (event, args) => {
   let settingsPath = app.getPath('userData') + '\\settings.json';
 
   try {
     let data = fs.readFileSync(settingsPath);
-
-    if (data) {
-      try {
-        let json = JSON.parse(data.toString());
-        event.reply('load-settings-result', json);
-      }
-      catch {
-        event.reply('load-settings-result', null);
-      }
-    }
-    else {
-      event.reply('load-settings-result', null);
-    }
+    let json = JSON.parse(data.toString());
+    event.reply('load-settings-result', json);
   }
   catch {
     event.reply('load-settings-result', null);

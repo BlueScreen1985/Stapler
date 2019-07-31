@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
 
   public languages: { name: string, isoCode: string }[];
 
-  constructor(private settings: SettingsService) { }
+  constructor(public settings: SettingsService) { }
 
   public ngOnInit(): void {
     this.languages = this.settings.getAvailableLanguages().map((lang: string) => ({ name: this.getFullLanguageName(lang), isoCode: lang }));
