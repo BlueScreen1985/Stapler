@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
+import { version, branch } from '../../../../package.json';
 
 @Component({
   selector: 'app-settings',
@@ -7,14 +8,8 @@ import { SettingsService } from 'src/app/services/settings.service';
   styleUrls: [ 'settings.component.scss' ]
 })
 export class SettingsComponent {
+  public version: string = version;
+  public branch: string = branch;
 
   constructor(private settings: SettingsService) { }
-
-  public get developerMode() {
-    return this.settings.developerMode;
-  }
-
-  public set developerMode(value: boolean) {
-    this.settings.developerMode = value;
-  }
 }

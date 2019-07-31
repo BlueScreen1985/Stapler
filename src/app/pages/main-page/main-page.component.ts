@@ -3,6 +3,7 @@ import { SourceDocument, SourcePages } from 'src/app/model/SourceDocument';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PdfService } from 'src/app/services/pdf.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +15,7 @@ export class MainPageComponent {
   public filename: string;
   public working: boolean = false;
 
-  constructor(private pdfService: PdfService, private snackBar: MatSnackBar) {}
+  constructor(private pdfService: PdfService, private snackBar: MatSnackBar, private translate: TranslateService) {}
 
   public addDocuments(): void {
     this.working = true;
@@ -28,7 +29,7 @@ export class MainPageComponent {
     }).catch(err => {
       console.log(JSON.stringify(err));
       if (err.isError) {
-        this.showSnackBar('💩 Something went wrong. See the developer console for details');
+        this.showSnackBar(this.translate.instant('message.error_generic'));
       }
       this.working = false;
     });
@@ -38,13 +39,13 @@ export class MainPageComponent {
     this.working = true;
     this.pdfService.composeAndSave(this.sourceDocuments, this.filename)
     .then(() => {
-      this.showSnackBar('💾 File saved!');
+      this.showSnackBar(this.translate.instant('message.saved_file'));
       this.working = false;
     })
     .catch(err => {
       console.log(JSON.stringify(err));
       if (err.isError) {
-        this.showSnackBar('💩 Something went wrong. See the developer console for details');
+        this.showSnackBar(this.translate.instant('message.error_generic'));
       }
       this.working = false;
     });
@@ -61,17 +62,24 @@ export class MainPageComponent {
   public getDocumentUsedPagesDisplayString(document: SourceDocument): string {
     switch (document.usePages) {
       case SourcePages.ALL:
-        return `${document.pageCount} pages`;
+        return this.translate.instant('document_use_pages.all', { pages: document.pageCount });
       case SourcePages.RANGE:
         if (!document.useRange) {
-          return 'Invalid range';
+          return this.translate.instant('document_use_pages.invalid_range');
         }
-        return `Pages ${document.useRange.from} to ${document.useRange.to} of ${document.pageCount}`;
+        return this.translate.instant('document_use_pages.range', {
+          pages: document.pageCount,
+          from: document.useRange.from,
+          to: document.useRange.to
+        });
       case SourcePages.SELECT:
         if (!document.useSelection || document.useSelection.length == 0) {
-          return 'Invalid range';
+          return this.translate.instant('document_use_pages.invalid_selection');
         }
-        return `Pages ${document.useSelection} of ${document.pageCount}`;
+        return this.translate.instant('document_use_pages.range', {
+          pages: document.pageCount,
+          selection: document.getUsedPageNumbers()
+        });
     }
   }
 

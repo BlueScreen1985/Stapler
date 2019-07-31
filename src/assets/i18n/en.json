@@ -1,0 +1,54 @@
+{
+  "sidebar": {
+    "actions": {
+      "new_file": "New file",
+      "add_files": "Add files",
+      "save": "Save"
+    },
+    "button_tooltips": {
+      "settings": "Settings",
+      "devtools": "Open DevTools"
+    }
+  },
+  "main_page": {
+    "filename": {
+      "label": "Exported file name"
+    },
+    "source_list": {
+      "header": "Including {{count}} documents",
+      "item_menu": {
+        "include_pages": {
+          "title": "Include",
+          "all": "Whole document",
+          "range": "Range",
+          "select": "Specific pages",
+          "input_label": {
+            "range": "Range",
+            "select": "Pages"
+          }
+        },
+        "remove": "Remove"
+      },
+      "drag_drop_hint": "Drag and drop documents to change the order in which they'll be added"
+    },
+    "welcome": {
+      "title": "Welcome",
+      "message": "To start, create a new file by clicking 'New file' or adding some files"
+    }
+  },
+  "settings": {
+    "developer_mode": "Developer mode",
+    "ok": "OK"
+  },
+  "document_use_pages": {
+    "all": "{{pages}} pages",
+    "range": "Pages {{from}} to {{to}} of {{pages}}",
+    "select": "Pages {{selection}} of {{pages}}",
+    "invalid_range": "Invalid range",
+    "invalid_selection": "Invalid selection"
+  },
+  "message": {
+    "error_generic": "💩 Something went wrong. See the developer console for details",
+    "saved_file": "💾 File saved!"
+  }
+}

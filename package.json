@@ -26,6 +26,8 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "fs": "0.0.1-security",
     "hammerjs": "^2.0.8",
     "ngx-electron": "^2.1.1",

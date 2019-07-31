@@ -3,8 +3,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
 
-  margin-bottom: 50px;
+.version-text {
+  font-size: 0.875em;
+  margin: 1em 0 0.5em;
 }
 
 .actions {

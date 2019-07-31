@@ -6,26 +6,26 @@
   <div class="actions">
     <div matRipple class="action-button" (click)="new.emit()">
       <img src="assets/img/icon/newfile.svg" />
-      <p class="button-text">New file</p>
+      <p class="button-text">{{ 'sidebar.actions.new_file' | translate }}</p>
     </div>
     <div matRipple class="action-button" (click)="addFiles.emit()">
       <img src="assets/img/icon/addfile.svg" />
-      <p class="button-text">Add files</p>
+      <p class="button-text">{{ 'sidebar.actions.add_files' | translate }}</p>
     </div>
     <div matRipple class="action-button" (click)="save.emit()">
       <img src="assets/img/icon/savefile.svg" />
-      <p class="button-text">Save</p>
+      <p class="button-text">{{ 'sidebar.actions.save' | translate }}</p>
     </div>
   </div>
 
   <div class="footer">
     <div class="buttons">
-      <button mat-icon-button matTooltip="Settings" matTooltipPosition="after" matTooltipClass="tooltip-square"
-        (click)="openSettings()">
+      <button mat-icon-button matTooltip="{{ 'sidebar.button_tooltips.settings' | translate }}"
+        matTooltipPosition="after" matTooltipClass="tooltip-square" (click)="openSettings()">
         <mat-icon>settings</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Toggle DevTools" matTooltipPosition="after" matTooltipClass="tooltip-square"
-        (click)="toggleDevTools()" *ngIf="devModeEnabled()">
+      <button mat-icon-button matTooltip="{{ 'sidebar.button_tooltips.devtools' | translate }}"
+        matTooltipPosition="after" matTooltipClass="tooltip-square" (click)="toggleDevTools()" *ngIf="devModeEnabled()">
         <mat-icon>code</mat-icon>
       </button>
     </div>

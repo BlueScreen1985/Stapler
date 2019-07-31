@@ -1,9 +1,12 @@
 <div mat-dialog-content>
   <div class="slide-toggle-wrapper">
-      <p class="slide-toggle-label">Developer mode</p>
-      <mat-slide-toggle [(ngModel)]="developerMode"></mat-slide-toggle>
+      <p class="slide-toggle-label">{{ 'settings.developer_mode' | translate }}</p>
+      <mat-slide-toggle [(ngModel)]="settings.developerMode"></mat-slide-toggle>
+  </div>
+  <div class="version-text">
+      Stapler v{{version}} {{branch}}
   </div>
 </div>
 <div mat-dialog-actions class="actions">
-  <button mat-flat-button color="primary" mat-dialog-close>Ok</button>
+  <button mat-flat-button color="primary" mat-dialog-close>{{ 'settings.ok' | translate }}</button>
 </div>

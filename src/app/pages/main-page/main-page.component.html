@@ -2,14 +2,14 @@
   <app-sidebar (addFiles)="addDocuments()" (save)="composeAndSave()" (new)="newProject()"></app-sidebar>
   <div class="page-content" *ngIf="sourceDocuments">
     <mat-form-field class="export-filename-field">
-      <mat-label>Exported filename</mat-label>
-      <input matInput value="file" [(ngModel)]="filename">
+      <mat-label>{{ 'main_page.filename.label' | translate }}</mat-label>
+      <input matInput [(ngModel)]="filename">
       <span matSuffix>.pdf</span>
     </mat-form-field>
     <div class="source-documents-list">
       <div class="border-card">
         <div class="list-header">
-          <h4>Including {{sourceDocuments.length}} documents</h4>
+          <h4>{{ 'main_page.source_list.header' | translate:{count: sourceDocuments.length} }}</h4>
 
           <button mat-icon-button color="primary" (click)="addDocuments()">
             <mat-icon>add</mat-icon>
@@ -25,32 +25,34 @@
               </div>
 
               <mat-menu #optionsMenu="matMenu" overlapTrigger="true">
-                <h5 class="menu-header">Include:</h5>
+                <h5 class="menu-header">{{ 'main_page.source_list.item_menu.include_pages.title' | translate }}</h5>
                 <mat-radio-group class="menu-radio-group" [(ngModel)]="document.usePages">
                   <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="ALL">
-                    Whole document</mat-radio-button>
+                    {{ 'main_page.source_list.item_menu.include_pages.all' | translate }}</mat-radio-button>
                   <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="RANGE"
-                    [disabled]="document.pageCount == 1">Range</mat-radio-button>
+                    [disabled]="document.pageCount == 1">
+                    {{ 'main_page.source_list.item_menu.include_pages.range' | translate }}</mat-radio-button>
                   <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="SELECT"
-                    [disabled]="document.pageCount == 1">Specific pages</mat-radio-button>
+                    [disabled]="document.pageCount == 1">
+                    {{ 'main_page.source_list.item_menu.include_pages.select' | translate }}</mat-radio-button>
                 </mat-radio-group>
 
                 <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'RANGE'"
                   (click)="$event.stopPropagation()">
-                  <mat-label>Range</mat-label>
+                  <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}</mat-label>
                   <input matInput placeholder="e.g 2-5" (keyup)="rangeInputChange(document, $event.target.value)"
                     [value]="getDocumentPageRange(document)">
                 </mat-form-field>
                 <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'SELECT'"
                   (click)="$event.stopPropagation()">
-                  <mat-label>Pages</mat-label>
+                  <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}</mat-label>
                   <input matInput placeholder="e.g 1,2,6,7" (keyup)="pagesInputChange(document, $event.target.value)"
                     [value]="getDocumentPageSelection(document)">
                 </mat-form-field>
 
                 <button mat-menu-item (click)="removeDocument(document)">
                   <mat-icon>delete</mat-icon>
-                  <span>Remove</span>
+                  <span>{{ 'main_page.source_list.item_menu.remove' | translate }}</span>
                 </button>
               </mat-menu>
 
@@ -62,14 +64,14 @@
           </div>
         </div>
       </div>
-      <p class="text-light">Drag and drop documents to change the order in which they'll be added</p>
+      <p class="text-light">{{ 'main_page.source_list.drag_drop_hint' | translate }}</p>
     </div>
   </div>
   <div class="page-content" *ngIf="!sourceDocuments">
     <div class="welcome">
       <img class="welcome-logo" src="assets/img/logo-welcome-screen.svg">
-      <h1 class="welcome-title">Welcome</h1>
-      <p class="welcome-message">To start, create a new file by clicking 'New file' or adding some files directly</p>
+      <h1 class="welcome-title">{{ 'main_page.welcome.title' | translate }}</h1>
+      <p class="welcome-message">{{ 'main_page.welcome.message' | translate }}</p>
     </div>
   </div>
 </div>
