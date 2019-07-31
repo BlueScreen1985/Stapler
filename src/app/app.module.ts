@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 // App imports
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +38,7 @@ import 'hammerjs';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -66,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatSelectModule,
     NgxElectronModule,
     TranslateModule.forRoot({
       loader: {

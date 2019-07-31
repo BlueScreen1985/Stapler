@@ -1,0 +1,54 @@
+{
+  "sidebar": {
+    "actions": {
+      "new_file": "Nuevo",
+      "add_files": "Agregar",
+      "save": "Guardar"
+    },
+    "button_tooltips": {
+      "settings": "Configuración",
+      "devtools": "Abrir DevTools"
+    }
+  },
+  "main_page": {
+    "filename": {
+      "label": "Nombre del archivo exportado"
+    },
+    "source_list": {
+      "header": "{{count}} documentos incluidos",
+      "item_menu": {
+        "include_pages": {
+          "title": "Incluir",
+          "all": "Documento entero",
+          "range": "Intervalo",
+          "select": "Páginas específicas",
+          "input_label": {
+            "range": "Intervalo",
+            "select": "Páginas"
+          }
+        },
+        "remove": "Eliminar"
+      },
+      "drag_drop_hint": "Arrastrá los documentos con el mouse para cambiar el orden en el que aparecen"
+    },
+    "welcome": {
+      "title": "Bienvenido",
+      "message": "Hacé click en 'Nuevo' o agregá archivos para comenzar"
+    }
+  },
+  "settings": {
+    "developer_mode": "Modo de desarrollo",
+    "ok": "OK"
+  },
+  "document_use_pages": {
+    "all": "{{pages}} páginas",
+    "range": "Páginas {{from}} a {{to}} de {{pages}}",
+    "select": "Páginas {{selection}} de {{pages}}",
+    "invalid_range": "Intervalo inválido",
+    "invalid_selection": "Selección inválida"
+  },
+  "message": {
+    "error_generic": "💩 Algo salió mal. Ver la consola en devtools para más detalles",
+    "saved_file": "💾 Documento exportado!"
+  }
+}

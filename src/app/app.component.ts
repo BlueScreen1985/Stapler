@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,16 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   public title: string = 'Stapler';
 
-  constructor(translate: TranslateService) {
+  constructor(private settings: SettingsService, private translate: TranslateService, private change: ChangeDetectorRef) {
+
+    translate.addLangs(['en', 'es']);
+
     translate.setDefaultLang('en');
     translate.use('en');
 
-    console.log(translate.langs);
+    settings.loadSettings().then(() => {
+      console.log('owo' + translate.currentLang);
+      change.detectChanges();
+    });
   }
 }
