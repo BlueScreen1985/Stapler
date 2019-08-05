@@ -26,7 +26,8 @@ export class SidebarComponent {
 
   public openSettings(): void {
     this.dialog.open(SettingsComponent, {
-      minWidth: 300
+      minWidth: 300,
+      disableClose: true
     });
   }
 
