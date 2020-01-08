@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+  <mat-form-field class="form-field-block">
+    <mat-select (selectionChange)="languageChanged($event)" [value]="currentLanguage">
+      <mat-option *ngFor="let language of languages" [value]="language.code">
+        {{language.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="slide-toggle-wrapper">
+    <p class="slide-toggle-label">{{ 'settings.developer_mode' | translate }}</p>
+    <mat-slide-toggle [(ngModel)]="developerMode"></mat-slide-toggle>
+  </div>
+  <div class="version-text">
+    Stapler v{{version}} {{branch}}
+  </div>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-flat-button color="primary" mat-dialog-close
+    (click)="saveSettings()">{{ 'settings.ok' | translate }}</button>
+</div>

@@ -33,14 +33,13 @@ import 'hammerjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { DropUploaderDirective } from './directives/drop-uploader.directive';
 import { InputComponent } from './components/input/input.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,9 +54,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     DocumentListComponent,
     MainPageComponent,
-    SidebarComponent,
-    SettingsComponent,
     StartPageComponent,
+    SettingsPageComponent,
     AppComponent
   ],
   imports: [
@@ -90,7 +88,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [SettingsComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
