@@ -44,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Dist
+/stapler-win32-ia32.zip
+/stapler-win32-ia32/
+/stapler-win32-x64.zip
+/stapler-win32-x64/
