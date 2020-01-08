@@ -1,81 +1,8 @@
-<div class="page-container">
-  <app-sidebar (addFiles)="addDocuments()" (save)="composeAndSave()" (new)="newProject()"></app-sidebar>
-  <div class="page-content" *ngIf="sourceDocuments">
-    <mat-form-field class="export-filename-field">
-      <mat-label>{{ 'main_page.filename.label' | translate }}</mat-label>
-      <input matInput [(ngModel)]="filename">
-      <span matSuffix>.pdf</span>
-    </mat-form-field>
-    <div class="source-documents-list">
-      <div class="border-card">
-        <div class="list-header">
-          <h4>{{ 'main_page.source_list.header' | translate:{count: sourceDocuments.length} }}</h4>
-
-          <button mat-icon-button color="primary" (click)="addDocuments()">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-        <div cdkDropList (cdkDropListDropped)="drop($event)">
-          <div cdkDrag *ngFor="let document of sourceDocuments; let i = index"
-            class="list-item-border fake-mat-list-item fake-mat-2-line">
-            <div class="fake-mat-list-item-content">
-              <div class="fake-mat-list-text">
-                <h4 class="fake-mat-line">{{document.filename}}</h4>
-                <p class="fake-mat-line text-light">{{getDocumentUsedPagesDisplayString(document)}}</p>
-              </div>
-
-              <mat-menu #optionsMenu="matMenu" overlapTrigger="true">
-                <h5 class="menu-header">{{ 'main_page.source_list.item_menu.include_pages.title' | translate }}</h5>
-                <mat-radio-group class="menu-radio-group" [(ngModel)]="document.usePages">
-                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="ALL">
-                    {{ 'main_page.source_list.item_menu.include_pages.all' | translate }}</mat-radio-button>
-                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="RANGE"
-                    [disabled]="document.pageCount == 1">
-                    {{ 'main_page.source_list.item_menu.include_pages.range' | translate }}</mat-radio-button>
-                  <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="SELECT"
-                    [disabled]="document.pageCount == 1">
-                    {{ 'main_page.source_list.item_menu.include_pages.select' | translate }}</mat-radio-button>
-                </mat-radio-group>
-
-                <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'RANGE'"
-                  (click)="$event.stopPropagation()">
-                  <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}</mat-label>
-                  <input matInput placeholder="e.g 2-5" (keyup)="rangeInputChange(document, $event.target.value)"
-                    [value]="getDocumentPageRange(document)">
-                </mat-form-field>
-                <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'SELECT'"
-                  (click)="$event.stopPropagation()">
-                  <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}</mat-label>
-                  <input matInput placeholder="e.g 1,2,6,7" (keyup)="pagesInputChange(document, $event.target.value)"
-                    [value]="getDocumentPageSelection(document)">
-                </mat-form-field>
-
-                <button mat-menu-item (click)="removeDocument(document)">
-                  <mat-icon>delete</mat-icon>
-                  <span>{{ 'main_page.source_list.item_menu.remove' | translate }}</span>
-                </button>
-              </mat-menu>
-
-              <button mat-icon-button [matMenuTriggerFor]="optionsMenu" color="primary">
-                <mat-icon>settings</mat-icon>
-              </button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="text-light">{{ 'main_page.source_list.drag_drop_hint' | translate }}</p>
-    </div>
-  </div>
-  <div class="page-content" *ngIf="!sourceDocuments">
-    <div class="welcome">
-      <img class="welcome-logo" src="assets/img/logo-welcome-screen.svg">
-      <h1 class="welcome-title">{{ 'main_page.welcome.title' | translate }}</h1>
-      <p class="welcome-message">{{ 'main_page.welcome.message' | translate }}</p>
-    </div>
-  </div>
+<div class="main--filename-input-container">
+  <stp-input class="main--filename-input" label="{{ 'main_page.filename.label' | translate }}" [(ngModel)]="filename"></stp-input>
+  <stp-button class="main--export-button" color="accent" (clicked)="save()">
+    <mat-icon>save</mat-icon>
+    <span>Save</span>
+  </stp-button>
 </div>
-
-<div class="overlay working-overlay" *ngIf="working">
-  <mat-spinner></mat-spinner>
-</div>
+<stp-document-list [sourceDocuments]="documents"></stp-document-list>

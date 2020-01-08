@@ -8,6 +8,23 @@ $app-colors: (
   primary: #c62828,
 
   text-default: rgba(0, 0, 0, 0.87),
-  text-light: rgba(0, 0, 0, 0.60),
-  text-disabled: rgba(0, 0, 0, 0.38)
+  text-light: rgba(0, 0, 0, 0.54),
+  text-disabled: rgba(0, 0, 0, 0.38),
+  background-disabled: rgba(0, 0, 0, 0.12),
+
+  text-white: white,
+  text-white-light: rgba(255, 255, 255, 0.72),
+  text-white-disabled: rgba(255, 255, 255, 0.5)
+);
+
+@function opacity($key) {
+  @return map-get($app-opacity, $key);
+}
+
+$app-opacity: (
+  full: 1,
+  text-default: 0.87,
+  text-light: 0.54,
+  text-disabled: 0.38,
+  background-disabled: 0.12
 );

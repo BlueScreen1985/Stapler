@@ -1,0 +1,137 @@
+@import "../../../color_theme";
+
+.start--container {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 24px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  user-select: none;
+}
+
+.start--logo {
+  height: 200px;
+}
+
+.start--button-group {
+  min-height: 120px;
+  max-height: 240px;
+  min-width: 120px * 2 + 16px;
+  max-width: 240px * 2 + 16px;
+
+  // Always try and stretch as large as possible
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+}
+
+$button-transition-time: 250ms;
+
+.start--button {
+  transition: border-color $button-transition-time ease, color $button-transition-time ease, transform $button-transition-time ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: color(text-disabled);
+  border: 3px solid color(text-disabled);
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  &:hover {
+    border-color: color(primary);
+    color: color(primary);
+
+    transform: scale(1.05);
+
+    .start--button-icon {
+      opacity: opacity(full);
+      stroke: color(primary);
+    }
+  }
+}
+
+.start--button-icon {
+  transition: opacity $button-transition-time ease, stroke $button-transition-time ease;
+
+  width: 96px;
+  height: 96px;
+
+  opacity: opacity(text-disabled);
+
+  // SVG properties
+  fill: none;
+  stroke: black;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+}
+
+.start--button-text {
+  font-size: 18px; // TODO: em
+}
+
+.drop-uploader--container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  &.drop-uploader--container__dropping {
+    .start--uploader-visual {
+      opacity: opacity(full);
+    }
+  }
+}
+
+.start--uploader-visual {
+  transition: opacity 400ms ease;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+
+  background-color: white;
+  color: color(text-disabled);
+  opacity: 0;
+}
+
+.start--uploader-icon {
+  width: 128px;
+  height: 128px;
+
+  opacity: opacity(text-disabled);
+
+  // SVG properties
+  fill: none;
+  stroke: black;
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+}

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PDFDocument, PDFFlateStream, PDFPage } from 'pdf-lib';
+import { PDFDocument, PDFPage } from 'pdf-lib';
 import { SourceDocument } from '../model/SourceDocument';
 import { ElectronService } from 'ngx-electron';
-import { isError } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +75,47 @@ export class PdfService {
   }
 
   /**
+   * Loads PDF documents from a list fo files
+   *
+   * @returns A promise containing an array of SourceDocument objects with the loaded
+   * files, resolved once all files are loaded
+   */
+  public addDocuments(files: File[]): Promise<SourceDocument[]> {
+    return new Promise(async (resolve, reject) => {
+      if (files && files.length > 0) {
+        // First, read all the files into buffers
+        const data: ArrayBuffer[] = await Promise.all(
+          files.map((file: File) => this.readFile(file))
+        );
+
+        // Load all PDF files and wait until all are done
+        Promise.all(
+          data.map(buffer => PDFDocument.load(buffer, { ignoreEncryption: true }))
+        ).then((documents: PDFDocument[]) => {
+          const sourceDocuments: SourceDocument[] = documents.map((document: PDFDocument) => new SourceDocument('', document));
+
+          // Good ol' iterator to add the filenames (this was almost a beautiful pure map function, *almost*)
+          for (let i = 0; i < sourceDocuments.length; i++) {
+            const filePath: string[] = files[i].path.split(new RegExp(/[\\/]/));
+            sourceDocuments[i].filename = filePath[filePath.length - 1];
+          }
+
+          resolve(sourceDocuments);
+        }).catch(err => reject({
+          isError: true,
+          error: err
+        }));
+      }
+      else {
+        reject({
+          isError: true,
+          error: 'Read 0 files. Input was empty or null.'
+        });
+      }
+    });
+  }
+
+  /**
    * Builds a single PDF document from a list of SourceDocument objects, and opens a native file save dialog to save the resulting document
    *
    * @param documents The list of document objects to include, documents will be added in the order they appear on the list
@@ -128,21 +168,30 @@ export class PdfService {
     });
   }
 
+  // Internal function, read a blob/file into a buffer
+  private readFile(file: Blob): Promise<ArrayBuffer> {
+    return new Promise((resolve, reject) => {
+      const fileReader: FileReader = new FileReader();
+      fileReader.onload = (e) => resolve(fileReader.result as ArrayBuffer);
+      fileReader.readAsArrayBuffer(file);
+    });
+  }
+
   // Internal function, compose a document from a SourceDocument list
   private compose(sourceDocuments: SourceDocument[]): Promise<PDFDocument> {
     return new Promise((resolve, reject) => {
       PDFDocument.create().then((newDocument: PDFDocument) => {
         // Pack all copy operations into a single promise and wait until all are finished
         Promise.all(sourceDocuments.map((source: SourceDocument) => newDocument.copyPages(source.getDocument(), source.getUsedPageIndices())))
-        .then((sources: PDFPage[][]) => {
-          // We get an array of the promise results, each one in turn an array of the copied pages
-          // Iterate through the results, then through the pages for each result and add them, in order, to our document
-          sources.forEach((source: PDFPage[]) => {
-            source.forEach((page: PDFPage) => newDocument.addPage(page));
-          });
-          resolve(newDocument); // Finally, resolve to the newly created document with all pages
-        })
-        .catch(err => reject(err));
+          .then((sources: PDFPage[][]) => {
+            // We get an array of the promise results, each one in turn an array of the copied pages
+            // Iterate through the results, then through the pages for each result and add them, in order, to our document
+            sources.forEach((source: PDFPage[]) => {
+              source.forEach((page: PDFPage) => newDocument.addPage(page));
+            });
+            resolve(newDocument); // Finally, resolve to the newly created document with all pages
+          })
+          .catch(err => reject(err));
       }).catch(err => reject(err));
     });
   }

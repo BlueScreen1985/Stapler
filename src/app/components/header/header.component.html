@@ -1,0 +1,18 @@
+<div class="header--container">
+  <div class="header--content header--content__left-aligned">
+    <stp-button (clicked)="newFile()">
+      <mat-icon>insert_drive_file</mat-icon>
+    </stp-button>
+    <stp-button (clicked)="addFiles()">
+      <mat-icon>library_add</mat-icon>
+    </stp-button>
+    <stp-button (clicked)="save()" *ngIf="route === '/main'">
+      <mat-icon>save</mat-icon>
+    </stp-button>
+  </div>
+  <div class="header--content header--content__right-aligned">
+    <stp-button>
+      <mat-icon>settings</mat-icon>
+    </stp-button>
+  </div>
+</div>

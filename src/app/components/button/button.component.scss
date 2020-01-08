@@ -1,0 +1,35 @@
+@import '../../../color_theme';
+@import '../../../variables';
+
+.button--base {
+  transition: color 250ms ease;
+
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: $component-border-radius;
+  color: color(text-disabled);
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: color(primary);
+  }
+}
+
+.button--base__accent {
+  background-color: color(primary);
+  color: color(text-white-light);
+
+  &:hover {
+    color: color(text-white);
+  }
+}
+
+.mat-icon + span {
+  margin-left: 0.3em;
+}

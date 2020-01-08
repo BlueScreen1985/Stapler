@@ -23,18 +23,24 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 
+// Misc imports
+import { NgxElectronModule } from 'ngx-electron';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import 'hammerjs';
+
 // App imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SettingsComponent } from './components/settings/settings.component';
-
-// Misc imports
-import { NgxElectronModule } from 'ngx-electron';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import 'hammerjs';
+import { StartPageComponent } from './pages/start-page/start-page.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ButtonComponent } from './components/button/button.component';
+import { DocumentListComponent } from './components/document-list/document-list.component';
+import { DropUploaderDirective } from './directives/drop-uploader.directive';
+import { InputComponent } from './components/input/input.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,10 +49,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    DropUploaderDirective,
+    ButtonComponent,
+    InputComponent,
+    HeaderComponent,
+    DocumentListComponent,
     MainPageComponent,
     SidebarComponent,
-    SettingsComponent
+    SettingsComponent,
+    StartPageComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

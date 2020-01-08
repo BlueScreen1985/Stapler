@@ -1,0 +1,80 @@
+@import "../../../variables";
+@import "../../../color_theme";
+
+.doclist--header {
+  height: 60px;
+  width: 100%;
+
+  padding: 8px 24px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.doclist--list {
+  width: 100%;
+}
+
+.doclist--list-item {
+  height: 72px;
+  width: 100%;
+
+  padding: 8px 24px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: white;
+  border-top: 1px solid color(background-disabled);
+
+  &.cdk-drag-preview {
+    border: 3px solid color(primary);
+    border-radius: $component-border-radius;
+  }
+
+  &:hover {
+    .doclist--list-item-actions {
+      opacity: opacity(full);
+      transform: scale(1);
+      pointer-events: auto;
+    }
+  }
+}
+
+.doclist--list-item-text {
+  max-width: calc(100% - 56px);
+
+  flex-grow: 1;
+}
+
+.doclist--list-item-title {
+  max-width: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doclist--list-item-pages {
+  margin: 0.5em 0 0;
+
+  color: color(text-light);
+}
+
+.doclist--list-item-actions {
+  transition: opacity 250ms ease, transform 250ms ease;
+  
+  margin-left: 16px;
+  
+  opacity: 0;
+  transform: scale(0.2);
+  pointer-events: none;
+}

@@ -1,0 +1,12 @@
+<div class="input--container">
+  <div class="input--background" [ngClass]="isFocused ? 'input--background__focus' : ''"></div>
+  <div class="input--label"
+    [ngClass]="(inputValue ? 'input--label__dirty' : '') + (isFocused ? ' input--label__focus' : '')">
+    {{ label }}
+  </div>
+  <div class="input--input-container">
+    <input class="input--html-input" [(ngModel)]="inputValue" (keyup)="valueChanged($event.target.value)"
+      (focus)="isFocused = true" (blur)="isFocused = false" [ngClass]="((inputValue || isFocused) ? 'input--html-input__focus' : '')">
+    <div class="input--ghost-height-keeper">&nbsp;</div>
+  </div>
+</div>

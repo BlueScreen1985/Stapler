@@ -1,6 +1,32 @@
 @import '../variables';
 
-.app-container {
+.app--container {
   width: 100vw;
   height: 100vh;
+}
+
+.app--content {
+  width: 100%;
+  height: $content-height;
+
+  overflow-y: auto;
+}
+
+.app--loading-overlay {
+  transition: background-color 250ms ease-in;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+
+  z-index: 10000;
+
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.app--loading-overlay__active {
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
 }

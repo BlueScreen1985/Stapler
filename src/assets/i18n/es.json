@@ -1,8 +1,9 @@
 {
-  "sidebar": {
+  "start": {
     "actions": {
       "new_file": "Nuevo",
       "add_files": "Agregar",
+      "drag_add": "Arrastrá documentos para agregarlos",
       "save": "Guardar"
     },
     "button_tooltips": {
@@ -41,6 +42,7 @@
     "ok": "OK"
   },
   "document_use_pages": {
+    "single_page": "Página única",
     "all": "{{pages}} páginas",
     "range": "Páginas {{from}} a {{to}} de {{pages}}",
     "select": "Páginas {{selection}} de {{pages}}",

@@ -1,0 +1,51 @@
+<div class="doclist--container">
+  <div class="doclist--header">
+    <h3>{{ 'main_page.source_list.header' | translate: { count: sourceDocuments.length } }}</h3>
+  </div>
+
+  <div class="doclist--list" cdkDropList (cdkDropListDropped)="listElementDropped($event)">
+    <div class="doclist--list-item" cdkDrag *ngFor="let document of sourceDocuments; let i = index">
+      <div class="doclist--list-item-text">
+        <h4 class="doclist--list-item-title">{{document.filename}}</h4>
+        <span class="doclist--list-item-pages">{{getDocumentUsedPagesDisplayString(document)}}</span>
+      </div>
+
+      <div class="doclist--list-item-actions">
+        <stp-button [matMenuTriggerFor]="optionsMenu">
+          <mat-icon>settings</mat-icon>
+        </stp-button>
+      </div>
+
+      <mat-menu #optionsMenu="matMenu" [overlapTrigger]="true">
+        <h5 class="menu-header">{{ 'main_page.source_list.item_menu.include_pages.title' | translate }}</h5>
+        <mat-radio-group class="menu-radio-group" [(ngModel)]="document.usePages">
+          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="ALL">
+            {{ 'main_page.source_list.item_menu.include_pages.all' | translate }}</mat-radio-button>
+          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="RANGE"
+            [disabled]="document.pageCount == 1">
+            {{ 'main_page.source_list.item_menu.include_pages.range' | translate }}</mat-radio-button>
+          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="SELECT"
+            [disabled]="document.pageCount == 1">
+            {{ 'main_page.source_list.item_menu.include_pages.select' | translate }}</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'RANGE'" (click)="$event.stopPropagation()">
+          <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}</mat-label>
+          <input matInput placeholder="e.g 2-5" (keyup)="rangeInputChange(document, $event.target.value)"
+            [value]="getDocumentPageRange(document)">
+        </mat-form-field>
+        <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'SELECT'"
+          (click)="$event.stopPropagation()">
+          <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}</mat-label>
+          <input matInput placeholder="e.g 1,2,6,7" (keyup)="pagesInputChange(document, $event.target.value)"
+            [value]="getDocumentPageSelection(document)">
+        </mat-form-field>
+
+        <button mat-menu-item (click)="removeDocument(document)">
+          <mat-icon>delete</mat-icon>
+          <span>{{ 'main_page.source_list.item_menu.remove' | translate }}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,9 @@
 {
-  "sidebar": {
+  "start": {
     "actions": {
       "new_file": "New file",
       "add_files": "Add files",
+      "drag_add": "Drop files here to add them",
       "save": "Save"
     },
     "button_tooltips": {
@@ -12,7 +13,8 @@
   },
   "main_page": {
     "filename": {
-      "label": "Exported file name"
+      "label": "Exported file name",
+      "default": "export.pdf"
     },
     "source_list": {
       "header": "Including {{count}} documents",
@@ -41,6 +43,7 @@
     "ok": "OK"
   },
   "document_use_pages": {
+    "single_page": "Single page",
     "all": "{{pages}} pages",
     "range": "Pages {{from}} to {{to}} of {{pages}}",
     "select": "Pages {{selection}} of {{pages}}",

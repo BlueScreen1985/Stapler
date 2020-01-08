@@ -1,0 +1,94 @@
+@import "../../../variables";
+@import "../../../color_theme";
+
+$label-offset: $component-border-radius + 4px;
+$animation-length: 250ms;
+
+.input--container {
+  position: relative;
+  margin-top: 0.5em;
+
+  &:hover {
+    .input--background:not(.input--background__focus) {
+      border: 3px solid color(text-default);
+    }
+  }
+}
+
+.input--background {
+  transition: border-width $animation-length ease, border-color $animation-length ease;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background-color: white;
+  border: 1px solid color(text-disabled);
+  border-radius: $component-border-radius;
+}
+
+.input--background__focus {
+  border: 3px solid color(primary);
+}
+
+.input--label {
+  transition: transform $animation-length ease, color $animation-length ease;
+
+  position: absolute;
+  left: $label-offset;
+
+  padding: 0 0.3em;
+
+  pointer-events: none;
+  color: color(text-light);
+  background-color: white;
+
+  transform-origin: top left;
+  transform: translateY(10px);
+
+  z-index: 10;
+}
+
+.input--label__focus {
+  transform: scale(0.8) translateY(-0.4em);
+  right: unset;
+  color: color(primary);
+}
+
+.input--label__dirty {
+  transform: scale(0.8) translateY(-0.4em);
+  right: unset;
+}
+
+.input--input-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input--html-input {
+  transition: padding $animation-length ease;
+
+  padding: 10px 16px 10px;
+
+  flex-grow: 1;
+
+  font-size: inherit;
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+}
+
+.input--html-input__focus {
+  padding: 12px 16px 8px;
+}
+
+// Ghost element hack to keep height constant with animated input padding
+.input--ghost-height-keeper {
+  width: 1px;
+  padding: 8px 0 12px;
+}
