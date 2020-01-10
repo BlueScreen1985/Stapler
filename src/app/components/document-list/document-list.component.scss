@@ -31,17 +31,17 @@
   align-items: center;
   justify-content: space-between;
 
-  background-color: white;
-  border-top: 1px solid color(background-disabled);
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--contrast-bg-3);
 
   &.cdk-drag-preview {
-    border: 3px solid color(primary);
-    border-radius: $component-border-radius;
+    border: 3px solid var(--color-primary);
+    border-radius: var(--border-radius);
   }
 
   &:hover {
     .doclist--list-item-actions {
-      opacity: opacity(full);
+      opacity: var(--opacity-full);
       transform: scale(1);
       pointer-events: auto;
     }
@@ -66,11 +66,11 @@
 .doclist--list-item-pages {
   margin: 0.5em 0 0;
 
-  color: color(text-light);
+  color: var(--contrast-bg-1);
 }
 
 .doclist--list-item-actions {
-  transition: opacity 250ms ease, transform 250ms ease;
+  transition: opacity var(--animation-medium) ease, transform var(--animation-medium) ease;
   
   margin-left: 16px;
   

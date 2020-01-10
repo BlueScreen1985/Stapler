@@ -7,7 +7,7 @@
   justify-content: space-between;
 
   padding: 8px 16px;
-  border-bottom: 1px solid color(background-disabled);
+  border-bottom: 1px solid var(--contrast-bg-3);
 }
 
 .header--content {
@@ -20,5 +20,5 @@
   margin-right: 0.5em;
 
   font-size: 0.875em;
-  color: color(text-light);
+  color: var(--contrast-bg-1);
 }

@@ -24,8 +24,8 @@ button:focus {
 
 // General styles
 div.border-card {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: $component-border-radius;
+  border: 1px solid var(--contrast-bg-3);
+  border-radius: var(--border-radius);
   overflow: hidden;
 }
 
@@ -53,7 +53,7 @@ div.border-card {
 
 // Material menu parts
 .menu-header {
-  color: color(text-light);
+  color: var(--contrast-bg-1);
   margin: 16px 16px 8px;
 }
 
@@ -74,20 +74,20 @@ div.border-card {
 
 // Text color classes
 .text-light {
-  color: color(text-light);
+  color: var(--contrast-bg-1);
 }
 
 .text-disabled {
-  color: color(text-disabled);
+  color: var(--contrast-bg-2);
 }
 
 // CDK drag styles
 .cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform var(--animation-medium) cubic-bezier(0, 0, 0.2, 1);
 }
 
 .cdk-drag-placeholder {
-  background-color: color(background-disabled);
+  background-color: var(--contrast-bg-3);
   z-index: 1;
 
   & > * {

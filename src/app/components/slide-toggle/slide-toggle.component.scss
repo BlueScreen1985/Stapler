@@ -1,5 +1,5 @@
 .slide-toggle--container {
-  transition: background-color 250ms ease;
+  transition: background-color var(--animation-medium) ease;
   
   box-sizing: content-box;
   width: 2rem;
@@ -8,22 +8,22 @@
   padding: 0.1875rem;
 
   cursor: pointer;
-  background-color: color(text-disabled);
-  border-radius: $component-border-radius;
+  background-color: var(--contrast-bg-2);
+  border-radius: var(--border-radius);
 
   &.slide-toggle__toggled {
-    background-color: color(primary);
+    background-color: var(--color-primary);
   }
 }
 
 .slide-toggle--knob {
-  transition: margin-left 250ms ease;
+  transition: margin-left var(--animation-medium) ease;
   
   width: 1rem;
   height: 1rem;
   
   pointer-events: none;
-  background-color: white;
+  background-color: var(--color-bg);
   border-radius: 5px;
 
   &.slide-toggle__toggled {

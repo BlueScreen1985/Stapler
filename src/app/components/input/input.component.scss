@@ -1,22 +1,18 @@
-@import "../../../variables";
-@import "../../../color_theme";
-
-$label-offset: $component-border-radius + 4px;
-$animation-length: 250ms;
-
 .input--container {
+  --label-offset: calc(var(--border-radius) + 4px);
+
   position: relative;
   margin-top: 0.5em;
 
   &:hover {
     .input--background:not(.input--background__focus) {
-      border: 3px solid color(text-default);
+      border: 3px solid var(--contrast-bg-0);
     }
   }
 }
 
 .input--background {
-  transition: border-width $animation-length ease, border-color $animation-length ease;
+  transition: border-width var(--animation-medium) ease, border-color var(--animation-medium) ease;
 
   position: absolute;
   top: 0;
@@ -24,26 +20,26 @@ $animation-length: 250ms;
   bottom: 0;
   right: 0;
 
-  background-color: white;
-  border: 1px solid color(text-disabled);
-  border-radius: $component-border-radius;
+  background-color: var(--color-bg);
+  border: 1px solid var(--contrast-bg-2);
+  border-radius: var(--border-radius);
 }
 
 .input--background__focus {
-  border: 3px solid color(primary);
+  border: 3px solid var(--color-primary);
 }
 
 .input--label {
-  transition: transform $animation-length ease, color $animation-length ease;
+  transition: transform var(--animation-medium) ease, color var(--animation-medium) ease;
 
   position: absolute;
-  left: $label-offset;
+  left: var(--label-offset);
 
   padding: 0 0.3em;
 
   pointer-events: none;
-  color: color(text-light);
-  background-color: white;
+  color: var(--contrast-bg-1);
+  background-color: var(--color-bg);
 
   transform-origin: top left;
   transform: translateY(10px);
@@ -54,7 +50,7 @@ $animation-length: 250ms;
 .input--label__focus {
   transform: scale(0.8) translateY(-0.4em);
   right: unset;
-  color: color(primary);
+  color: var(--color-primary);
 }
 
 .input--label__dirty {
@@ -71,7 +67,7 @@ $animation-length: 250ms;
 }
 
 .input--html-input {
-  transition: padding $animation-length ease;
+  transition: padding var(--animation-medium) ease;
 
   height: 2.5em;
   padding: 10px 16px 10px;

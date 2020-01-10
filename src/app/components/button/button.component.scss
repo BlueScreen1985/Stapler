@@ -1,5 +1,5 @@
 .button--base {
-  transition: color 250ms ease, background-color 250ms ease;
+  transition: color var(--animation-medium) ease, background-color var(--animation-medium) ease;
 
   padding: 8px;
 
@@ -7,24 +7,24 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: $component-border-radius;
-  color: color(text-disabled);
+  border-radius: var(--border-radius);
+  color: var(--contrast-bg-2);
 
   cursor: pointer;
   user-select: none;
 
   &:hover {
-    color: color(primary);
+    color: var(--color-primary);
   }
 }
 
 .button--base__accent {
-  background-color: color(primary);
-  color: color(text-white);
+  background-color: var(--color-primary);
+  color: var(--contrast-pr-0);
 
   &:hover {
-    background-color: color(primary-dark);
-    color: color(text-white);  
+    background-color: var(--color-primary-dark);
+    color: var(--contrast-pr-0);  
   }
 }
 

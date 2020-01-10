@@ -7,8 +7,8 @@
   margin: 0 auto;
   padding: 16px;
 
-  border: 1px solid color(background-disabled);
-  border-radius: $component-border-radius;
+  border: 1px solid var(--contrast-bg-3);
+  border-radius: var(--border-radius);
 }
 
 .settings--content {
@@ -40,5 +40,5 @@
 
   text-align: center;
   font-size: 0.875em;
-  color: color(text-light);
+  color: var(--contrast-bg-1);
 }

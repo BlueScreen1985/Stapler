@@ -33,42 +33,40 @@
   column-gap: 16px;
 }
 
-$button-transition-time: 250ms;
-
 .start--button {
-  transition: border-color $button-transition-time ease, color $button-transition-time ease, transform $button-transition-time ease;
+  transition: border-color var(--animation-medium) ease, color var(--animation-medium) ease, transform var(--animation-medium) ease;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  color: color(text-disabled);
-  border: 3px solid color(text-disabled);
+  color: var(--contrast-bg-2);
+  border: 3px solid var(--contrast-bg-2);
   border-radius: 16px;
 
   cursor: pointer;
 
   &:hover {
-    border-color: color(primary);
-    color: color(primary);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 
     transform: scale(1.05);
 
     .start--button-icon {
-      opacity: opacity(full);
-      stroke: color(primary);
+      opacity: var(--opacity-full);
+      stroke: var(--color-primary);
     }
   }
 }
 
 .start--button-icon {
-  transition: opacity $button-transition-time ease, stroke $button-transition-time ease;
+  transition: opacity var(--animation-medium) ease, stroke var(--animation-medium) ease;
 
   width: 96px;
   height: 96px;
 
-  opacity: opacity(text-disabled);
+  opacity: var(--opacity-3);
 
   // SVG properties
   fill: none;
@@ -97,13 +95,13 @@ $button-transition-time: 250ms;
 
   &.drop-uploader--container__dropping {
     .start--uploader-visual {
-      opacity: opacity(full);
+      opacity: var(--opacity-full);
     }
   }
 }
 
 .start--uploader-visual {
-  transition: opacity 400ms ease;
+  transition: opacity var(--animation-long) ease;
 
   position: absolute;
   top: 0;
@@ -118,8 +116,8 @@ $button-transition-time: 250ms;
 
   pointer-events: none;
 
-  background-color: white;
-  color: color(text-disabled);
+  background-color: var(--color-bg);
+  color: var(--contrast-bg-2);
   opacity: 0;
 }
 
@@ -127,7 +125,7 @@ $button-transition-time: 250ms;
   width: 128px;
   height: 128px;
 
-  opacity: opacity(text-disabled);
+  opacity: var(--opacity-3);
 
   // SVG properties
   fill: none;

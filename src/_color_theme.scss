@@ -1,30 +1,25 @@
 // Define the app colors
+:root {
+  --color-bg: white;
+  --color-bg-alt: white;
+  --color-bg-half: rgba(255, 255, 255, 0.5);
 
-@function color($key) {
-  @return map-get($app-colors, $key);
+  --color-primary: #c62828;
+  --color-primary-dark: #9a0007;
+
+  --contrast-bg-0: rgba(0, 0, 0, 0.87);
+  --contrast-bg-1: rgba(0, 0, 0, 0.54);
+  --contrast-bg-2: rgba(0, 0, 0, 0.38);
+  --contrast-bg-3: rgba(0, 0, 0, 0.12);
+
+  --contrast-pr-0: rgba(255, 255, 255, 1);
+  --contrast-pr-1: rgba(255, 255, 255, 0.72);
+  --contrast-pr-2: rgba(255, 255, 255, 0.5);
+  --contrast-pr-3: rgba(255, 255, 255, 0.35);
+
+  --opacity-full: 1;
+  --opacity-1: 0.87;
+  --opacity-2: 0.54;
+  --opacity-3: 0.38;
+  --opacity-4: 0.12;
 }
-
-$app-colors: (
-  primary: #c62828,
-
-  text-default: rgba(0, 0, 0, 0.87),
-  text-light: rgba(0, 0, 0, 0.54),
-  text-disabled: rgba(0, 0, 0, 0.38),
-  background-disabled: rgba(0, 0, 0, 0.12),
-
-  text-white: white,
-  text-white-light: rgba(255, 255, 255, 0.72),
-  text-white-disabled: rgba(255, 255, 255, 0.5)
-);
-
-@function opacity($key) {
-  @return map-get($app-opacity, $key);
-}
-
-$app-opacity: (
-  full: 1,
-  text-default: 0.87,
-  text-light: 0.54,
-  text-disabled: 0.38,
-  background-disabled: 0.12
-);
