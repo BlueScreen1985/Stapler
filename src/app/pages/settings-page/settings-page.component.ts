@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService, LanguageModel } from 'src/app/services/settings.service';
 import { version, branch } from '../../../../package.json';
 import { MatSelectChange } from '@angular/material/select';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'stp-settings-page',
@@ -24,7 +25,10 @@ export class SettingsPageComponent implements OnInit {
     this.settings.developerMode = value;
   }
 
-  constructor(private settings: SettingsService) { }
+  constructor(
+    private settings: SettingsService,
+    private location: Location
+  ) { }
 
   public ngOnInit(): void {
     this.languages = this.settings.getAvailableLanguages();
@@ -36,5 +40,6 @@ export class SettingsPageComponent implements OnInit {
 
   public saveSettings() {
     this.settings.saveSettings();
+    this.location.back();
   }
 }

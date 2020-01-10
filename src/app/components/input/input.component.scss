@@ -73,6 +73,7 @@ $animation-length: 250ms;
 .input--html-input {
   transition: padding $animation-length ease;
 
+  height: 2.5em;
   padding: 10px 16px 10px;
 
   flex-grow: 1;

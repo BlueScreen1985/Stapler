@@ -1,8 +1,5 @@
-@import '../../../color_theme';
-@import '../../../variables';
-
 .button--base {
-  transition: color 250ms ease;
+  transition: color 250ms ease, background-color 250ms ease;
 
   padding: 8px;
 
@@ -23,13 +20,19 @@
 
 .button--base__accent {
   background-color: color(primary);
-  color: color(text-white-light);
+  color: color(text-white);
 
   &:hover {
-    color: color(text-white);
+    background-color: color(primary-dark);
+    color: color(text-white);  
   }
 }
 
 .mat-icon + span {
-  margin-left: 0.3em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.span ~ .mat-icon {
+  margin-left: 0.5em;
 }

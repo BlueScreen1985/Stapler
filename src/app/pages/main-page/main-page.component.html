@@ -2,7 +2,6 @@
   <stp-input class="main--filename-input" label="{{ 'main_page.filename.label' | translate }}" [(ngModel)]="filename"></stp-input>
   <stp-button class="main--export-button" color="accent" (clicked)="save()">
     <mat-icon>save</mat-icon>
-    <span>Save</span>
   </stp-button>
 </div>
 <stp-document-list [sourceDocuments]="documents"></stp-document-list>

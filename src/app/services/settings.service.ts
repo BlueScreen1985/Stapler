@@ -36,7 +36,7 @@ export class SettingsService {
   }
 
   public setLanguage(lang: string): void {
-    if (this.getAvailableLanguages().includes(this.getLanguageData(lang))) {
+    if (this.translate.getLangs().includes(lang)) {
       this.translate.use(lang);
     }
   }

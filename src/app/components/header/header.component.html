@@ -11,7 +11,11 @@
     </stp-button>
   </div>
   <div class="header--content header--content__right-aligned">
-    <stp-button>
+    <span class="header--version-text" *ngIf="developerMode">{{ versionText }}</span>
+    <stp-button (clicked)="openDevTools()" *ngIf="developerMode">
+      <mat-icon>code</mat-icon>
+    </stp-button>
+    <stp-button (clicked)="openSettings()">
       <mat-icon>settings</mat-icon>
     </stp-button>
   </div>
