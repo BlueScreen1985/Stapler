@@ -40,6 +40,7 @@
   },
   "settings": {
     "language": "Language",
+    "theme": "Theme",
     "developer_mode": "Developer mode",
     "ok": "OK"
   },

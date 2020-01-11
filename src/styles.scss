@@ -7,6 +7,7 @@
 
 // Resets
 body {
+  color: var(--contrast-bg-0);
   font-family: "Roboto";
   margin: 0px;
 }
@@ -16,14 +17,23 @@ body {
 }
 
 input:focus,
+button:focus,
 select:focus,
-textarea:focus,
-button:focus {
+textarea:focus {
     outline: none; // Removes stupid gross ugly very bad no good chrome highlighting on inputs
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
 }
 
 // General styles
 div.border-card {
+  background-color: var(--color-bg);
   border: 1px solid var(--contrast-bg-3);
   border-radius: var(--border-radius);
   overflow: hidden;

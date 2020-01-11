@@ -68,7 +68,7 @@
 
   // SVG properties
   fill: none;
-  stroke: black;
+  stroke: var(--contrast-bg-full);
   stroke-linejoin: round;
   stroke-width: 2px;
 }

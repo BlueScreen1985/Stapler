@@ -39,6 +39,7 @@
   },
   "settings": {
     "language": "Idioma",
+    "theme": "Theme",
     "developer_mode": "Modo de desarrollo",
     "ok": "OK"
   },

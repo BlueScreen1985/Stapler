@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DocumentService } from 'src/app/services/document.service';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'stp-start-page',
@@ -13,7 +14,8 @@ export class StartPageComponent implements OnInit {
 
   constructor(
     private documentService: DocumentService,
-    private router: Router
+    private router: Router,
+    private theme: ThemeService
   ) { }
 
   public ngOnInit() {

@@ -6,8 +6,18 @@
         {{ 'settings.language' | translate }}
       </div>
       <div class="settings--item-field">
-        <stp-select #languageSelect [options]="languageOptions" placeholder="{{ 'settings.language' | translate }}"
+        <stp-select [options]="languageOptions" placeholder="{{ 'settings.language' | translate }}"
           [(ngModel)]="currentLanguage">
+        </stp-select>
+      </div>
+
+      <!-- Theme -->
+      <div class="settings--item-label">
+        {{ 'settings.theme' | translate }}
+      </div>
+      <div class="settings--item-field">
+        <stp-select [options]="themeOptions" placeholder="{{ 'settings.theme' | translate }}"
+          [(ngModel)]="currentTheme">
         </stp-select>
       </div>
 

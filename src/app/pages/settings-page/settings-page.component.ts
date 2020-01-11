@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SettingsService, LanguageModel } from 'src/app/services/settings.service';
-import { version, branch } from '../../../../package.json';
 import { Location } from '@angular/common';
+import { SettingsService, LanguageModel } from 'src/app/services/settings.service';
+import { ThemeService, ThemeModel } from 'src/app/services/theme.service';
+import { version, branch } from 'package.json';
 import { StpSelectOption, SelectComponent } from 'src/app/components/select/select.component.js';
 
 @Component({
@@ -25,6 +26,17 @@ export class SettingsPageComponent implements OnInit {
     return this.languages.map((lang: LanguageModel) => ({ displayName: lang.name, value: lang.code }));
   }
 
+  public get currentTheme(): string {
+    return this.theme.currentTheme;
+  }
+  public set currentTheme(value: string) {
+    this.theme.currentTheme = value;
+  }
+
+  public get themeOptions(): StpSelectOption[] {
+    return this.theme.availableThemes.map((theme: ThemeModel) => ({ displayName: theme.displayName, value: theme.name }));
+  }
+
   public get developerMode(): boolean {
     return this.settings.developerMode;
   }
@@ -36,6 +48,7 @@ export class SettingsPageComponent implements OnInit {
 
   constructor(
     private settings: SettingsService,
+    private theme: ThemeService,
     private location: Location
   ) { }
 
