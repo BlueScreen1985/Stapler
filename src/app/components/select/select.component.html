@@ -1,0 +1,21 @@
+<div class="select--container">
+  <div class="select--background" (click)="openPanel()"
+    [ngClass]="showSelectionPanel ? 'select--background__focus' : ''"></div>
+  <div class="select--label" *ngIf="label"
+    [ngClass]="(selected ? 'select--label__dirty' : '') + (showSelectionPanel ? ' select--label__focus' : '')">
+    {{ label }}
+  </div>
+
+  <div class="select--content">
+    <span class="select--value"> {{ selected ? selected.displayName : placeholder }} </span>
+    <mat-icon class="select--drop-arrow" [ngClass]="showSelectionPanel ? 'select--drop-arrow__focus' : ''">arrow_drop_down</mat-icon>
+  </div>
+
+  <div class="select--overlay" (click)="closePanel()" *ngIf="showSelectionPanel"></div>
+  <div class="select--selection-panel menu-panel"
+    [ngClass]="showSelectionPanel ? 'select--selection-panel__focus' : ''">
+    <div class="select--option menu-panel-item" *ngFor="let option of options" (click)="select(option)">
+      {{ option.displayName }}
+    </div>
+  </div>
+</div>

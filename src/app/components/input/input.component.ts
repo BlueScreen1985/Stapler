@@ -49,7 +49,11 @@ export class InputComponent implements ControlValueAccessor {
 
   // Change handling
   public valueChanged(value: string) {
-    this.onChange(value);
-    this.onTouched();
+    if (this.onChange) {
+      this.onChange(value);
+    }
+    if (this.onTouched) {
+      this.onTouched();
+    }
   }
 }

@@ -5,14 +5,10 @@
       <div class="settings--item-label">
         {{ 'settings.language' | translate }}
       </div>
-      <div class="settings--item-control">
-        <mat-form-field class="form-field-block">
-          <mat-select (selectionChange)="languageChanged($event)" [value]="currentLanguage">
-            <mat-option *ngFor="let language of languages" [value]="language.code">
-              {{language.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="settings--item-field">
+        <stp-select #languageSelect [options]="languageOptions" placeholder="{{ 'settings.language' | translate }}"
+          [(ngModel)]="currentLanguage">
+        </stp-select>
       </div>
 
       <!-- Developer Mode -->
@@ -23,9 +19,10 @@
         <stp-slide-toggle [(ngModel)]="developerMode"></stp-slide-toggle>
       </div>
     </div>
-  
-    <stp-button class="settings--save-button" color="accent" (click)="saveSettings()">{{ 'settings.ok' | translate }}</stp-button>
-  
+
+    <stp-button class="settings--save-button" color="accent" (click)="saveSettings()">{{ 'settings.ok' | translate }}
+    </stp-button>
+
     <div class="settings--version-text">
       Stapler v{{version}} {{branch}}
     </div>

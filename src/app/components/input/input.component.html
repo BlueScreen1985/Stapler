@@ -1,6 +1,6 @@
 <div class="input--container">
   <div class="input--background" [ngClass]="isFocused ? 'input--background__focus' : ''"></div>
-  <div class="input--label"
+  <div class="input--label" *ngIf="label"
     [ngClass]="(inputValue ? 'input--label__dirty' : '') + (isFocused ? ' input--label__focus' : '')">
     {{ label }}
   </div>

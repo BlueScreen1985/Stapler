@@ -29,26 +29,41 @@ div.border-card {
   overflow: hidden;
 }
 
-.tooltip-square {
-  border-radius: 0px !important;
-  font-size: 0.8em;
-}
-
 .overlay {
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100vw;
   height: 100vh;
+
   z-index: 10000;
 }
 
-.form-field-block {
-  width: 100%;
+.menu-panel {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--contrast-bg-3);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
-.mat-icon + span {
-  margin-left: 0.3em;
+.menu-panel-item {
+  height: 2.5em;
+  padding: 0 1em;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background-color: var(--contrast-bg-3);
+  }
+
+  & + .menu-panel-item {
+    border-top: 1px solid var(--contrast-bg-3);
+  }
 }
 
 // Material menu parts
@@ -70,6 +85,11 @@ div.border-card {
   margin-left: 16px;
   margin-right: 16px;
   margin-top: 8px;
+}
+
+.tooltip-square {
+  border-radius: 0px !important;
+  font-size: 0.8em;
 }
 
 // Text color classes
