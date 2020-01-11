@@ -13,14 +13,15 @@
 
 .settings--content {
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row dense;
   row-gap: 0.5em;
   column-gap: 1em;
-  align-items: baseline;
+  align-items: center;
+  grid-auto-rows: minmax(2.5em, auto);
 }
 
 .settings--item-label {
