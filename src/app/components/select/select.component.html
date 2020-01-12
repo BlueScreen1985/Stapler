@@ -8,7 +8,8 @@
 
   <div class="select--content">
     <span class="select--value"> {{ selected ? selected.displayName : placeholder }} </span>
-    <mat-icon class="select--drop-arrow" [ngClass]="showSelectionPanel ? 'select--drop-arrow__focus' : ''">arrow_drop_down</i>
+    <i class="material-icons select--drop-arrow"
+      [ngClass]="showSelectionPanel ? 'select--drop-arrow__focus' : ''">arrow_drop_down</i>
   </div>
 
   <div class="select--overlay" (click)="closePanel()" *ngIf="showSelectionPanel"></div>
