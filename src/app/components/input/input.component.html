@@ -5,7 +5,7 @@
     {{ label }}
   </div>
   <div class="input--input-container">
-    <input class="input--html-input" [(ngModel)]="inputValue" (keyup)="valueChanged($event.target.value)"
+    <input class="input--html-input" [(ngModel)]="inputValue" (keyup)="valueChange($event.target.value)"
       (focus)="isFocused = true" (blur)="isFocused = false" [ngClass]="((inputValue || isFocused) ? 'input--html-input__focus' : '')">
     <div class="input--ghost-height-keeper">&nbsp;</div>
   </div>

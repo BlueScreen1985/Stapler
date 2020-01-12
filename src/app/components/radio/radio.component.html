@@ -1,0 +1,12 @@
+<div class="radio--container">
+  <div class="radio--option" *ngFor="let option of options" (click)="select(option)"
+    [ngClass]="(option === selected ? 'radio--option__selected' : '') + (menuRadio ? ' menu-panel-item' : '') + (isDisabled(option) ? ' radio--option__disabled' : '')">
+    <div class="radio--option-checkbox" [ngClass]="option === selected ? 'radio--option-checkbox__checked' : ''">
+      <div class="radio--option-checkbox-center"></div>
+    </div>
+
+    <span class="radio--option-label">
+      {{ option.label }}
+    </span>
+  </div>
+</div>

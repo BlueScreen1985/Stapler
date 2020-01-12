@@ -4,6 +4,7 @@
   padding: 8px;
 
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -25,6 +26,20 @@
   &:hover {
     background-color: var(--color-primary-dark);
     color: var(--contrast-pr-0);  
+  }
+}
+
+.button--base.menu-panel-item {
+  height: 2.5em;
+  width: 100%;
+  padding: 0 1em;
+
+  border-radius: 0;
+  color: var(--contrast-bg-1);
+  
+  &:hover {
+    color: var(--contrast-bg-1);
+    background-color: var(--contrast-bg-3);
   }
 }
 

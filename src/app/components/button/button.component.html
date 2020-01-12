@@ -1,3 +1,3 @@
-<div class="button--base" [ngClass]="'button--base__' + color" matRipple (click)="click()">
+<div class="button--base" [ngClass]="'button--base__' + color + (menuButton ? ' menu-panel-item' : '')" matRipple (click)="click()">
   <ng-content></ng-content>
 </div>

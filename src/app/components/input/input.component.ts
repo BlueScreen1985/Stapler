@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -12,19 +12,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   }]
 })
 export class InputComponent implements ControlValueAccessor {
-  private value: string = '';
+  private theValue: string = '';
   private focused: boolean = false;
   private onChange: (_: string) => void;
   private onTouched: () => void;
 
   @Input() public label: string;
+  @Input() public set value(value: string) {
+    this.theValue = value;
+  }
+  @Output() public valueChanged: EventEmitter<string> = new EventEmitter();
 
   // Internal get/setter for value and focus
   public get inputValue(): string {
-    return this.value;
+    return this.theValue;
   }
   public set inputValue(value: string) {
-    this.value = value;
+    this.theValue = value;
   }
 
   public get isFocused(): boolean {
@@ -36,7 +40,7 @@ export class InputComponent implements ControlValueAccessor {
 
   // Angular ControlValueAccessor methods
   public writeValue(value: string) {
-    this.value = value;
+    this.theValue = value;
   }
 
   public registerOnChange(fn: (_: string) => void): void {
@@ -48,12 +52,13 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   // Change handling
-  public valueChanged(value: string) {
+  public valueChange(value: string) {
     if (this.onChange) {
       this.onChange(value);
     }
     if (this.onTouched) {
       this.onTouched();
     }
+    this.valueChanged.emit(value);
   }
 }

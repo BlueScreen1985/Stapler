@@ -3,6 +3,7 @@ import { SourceDocument, SourcePages } from 'src/app/model/SourceDocument';
 import { TranslateService } from '@ngx-translate/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DocumentService } from 'src/app/services/document.service';
+import { StpRadioOption } from '../radio/radio.component';
 
 @Component({
   selector: 'stp-document-list',
@@ -10,6 +11,12 @@ import { DocumentService } from 'src/app/services/document.service';
   styleUrls: ['document-list.component.scss']
 })
 export class DocumentListComponent {
+  public pageOptions: StpRadioOption[] = [
+    { value: 'ALL', label: this.translate.instant('main_page.source_list.item_menu.include_pages.all') },
+    { value: 'RANGE', label: this.translate.instant('main_page.source_list.item_menu.include_pages.range') },
+    { value: 'SELECT', label: this.translate.instant('main_page.source_list.item_menu.include_pages.select') }
+  ];
+
   @Input() public sourceDocuments: SourceDocument[];
 
   constructor(
@@ -90,6 +97,14 @@ export class DocumentListComponent {
         document.useSelection = selection;
       }
     }
+  }
+
+  public showMenu(menu: HTMLElement) {
+    menu.classList.add('doclist--list-item-options-menu-container__open');
+  }
+
+  public hideMenu(menu: HTMLElement) {
+    menu.classList.remove('doclist--list-item-options-menu-container__open');
   }
 
   public removeDocument(document: SourceDocument): void {

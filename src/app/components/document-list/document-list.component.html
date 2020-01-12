@@ -3,49 +3,44 @@
     <h3>{{ 'main_page.source_list.header' | translate: { count: sourceDocuments.length } }}</h3>
   </div>
 
-  <div class="doclist--list" cdkDropList (cdkDropListDropped)="listElementDropped($event)">
+  <div class="doclist--list" cdkDropList cdkDropListLockAxis="y" (cdkDropListDropped)="listElementDropped($event)">
     <div class="doclist--list-item" cdkDrag *ngFor="let document of sourceDocuments; let i = index">
+      <div class="doclist--list-item-drag-handle" cdkDragHandle></div>
+
       <div class="doclist--list-item-text">
         <h4 class="doclist--list-item-title">{{document.filename}}</h4>
         <span class="doclist--list-item-pages">{{getDocumentUsedPagesDisplayString(document)}}</span>
       </div>
 
       <div class="doclist--list-item-actions">
-        <stp-button [matMenuTriggerFor]="optionsMenu">
-          <mat-icon>settings</mat-icon>
+        <stp-button (clicked)="showMenu(optionsMenu)">
+          <i class="material-icons">settings</i>
         </stp-button>
       </div>
 
-      <mat-menu #optionsMenu="matMenu" [overlapTrigger]="true">
-        <h5 class="menu-header">{{ 'main_page.source_list.item_menu.include_pages.title' | translate }}</h5>
-        <mat-radio-group class="menu-radio-group" [(ngModel)]="document.usePages">
-          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="ALL">
-            {{ 'main_page.source_list.item_menu.include_pages.all' | translate }}</mat-radio-button>
-          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="RANGE"
-            [disabled]="document.pageCount == 1">
-            {{ 'main_page.source_list.item_menu.include_pages.range' | translate }}</mat-radio-button>
-          <mat-radio-button class="mat-menu-item" (click)="$event.stopPropagation()" value="SELECT"
-            [disabled]="document.pageCount == 1">
-            {{ 'main_page.source_list.item_menu.include_pages.select' | translate }}</mat-radio-button>
-        </mat-radio-group>
+      <div #optionsMenu class="doclist--list-item-options-menu-container">
+        <div class="doclist--list-item-options-menu-overlay" (click)="hideMenu(optionsMenu)" draggable="false"></div>
+        <div class="doclist--list-item-options-menu menu-panel" draggable="false">
+          <span class="menu-header">{{ 'main_page.source_list.item_menu.include_pages.title' | translate }}</span>
 
-        <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'RANGE'" (click)="$event.stopPropagation()">
-          <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}</mat-label>
-          <input matInput placeholder="e.g 2-5" (keyup)="rangeInputChange(document, $event.target.value)"
-            [value]="getDocumentPageRange(document)">
-        </mat-form-field>
-        <mat-form-field class="menu-form-field" *ngIf="document.usePages == 'SELECT'"
-          (click)="$event.stopPropagation()">
-          <mat-label>{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}</mat-label>
-          <input matInput placeholder="e.g 1,2,6,7" (keyup)="pagesInputChange(document, $event.target.value)"
-            [value]="getDocumentPageSelection(document)">
-        </mat-form-field>
+          <stp-radio [(ngModel)]="document.usePages" [options]="pageOptions" [menuRadio]="true"
+            [disabledOptions]="document.pageCount === 1 ? ['RANGE', 'SELECT'] : []"></stp-radio>
 
-        <button mat-menu-item (click)="removeDocument(document)">
-          <mat-icon>delete</mat-icon>
-          <span>{{ 'main_page.source_list.item_menu.remove' | translate }}</span>
-        </button>
-      </mat-menu>
+          <div class="menu-panel-input">
+            <stp-input label="{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}"
+              *ngIf="document.usePages === 'RANGE'" (valueChanged)="rangeInputChange(document, $event)"
+              [value]="getDocumentPageRange(document)"></stp-input>
+            <stp-input label="{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}"
+              *ngIf="document.usePages === 'SELECT'" (valueChanged)="pagesInputChange(document, $event)"
+              [value]="getDocumentPageSelection(document)"></stp-input>
+          </div>
+
+          <stp-button [menuButton]="true" (clicked)="removeDocument(document)">
+            <i class="material-icons">delete</i>
+            <span>{{ 'main_page.source_list.item_menu.remove' | translate }}</span>
+          </stp-button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

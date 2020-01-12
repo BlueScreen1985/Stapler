@@ -17,15 +17,10 @@ export interface StpSelectOption {
   }]
 })
 export class SelectComponent implements ControlValueAccessor {
-  // private value: any;
   private selectedOption: StpSelectOption;
   private showPanel: boolean = false;
   private onChange: (_: any) => void;
   private onTouched: () => void;
-
-  /* public get selectedValue(): any {
-    return this.value;
-  } */
 
   public get selected(): StpSelectOption {
     return this.selectedOption;
@@ -42,7 +37,6 @@ export class SelectComponent implements ControlValueAccessor {
 
   // Angular ControlValueAccessor methods
   public writeValue(value: any) {
-    // this.value = value;
     if (this.options) {
       this.selectedOption = this.options.find((option: StpSelectOption) => option.value === value);
     }
@@ -59,7 +53,6 @@ export class SelectComponent implements ControlValueAccessor {
   // Value change handler
   public select(option: StpSelectOption): void {
     this.showPanel = false;
-    // this.value = option.value;
     this.selectedOption = option;
     this.valueChanged.emit(option.value);
 

@@ -42,6 +42,7 @@ import { InputComponent } from './components/input/input.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { SelectComponent } from './components/select/select.component';
+import { RadioComponent } from './components/radio/radio.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonComponent,
     InputComponent,
     SelectComponent,
+    RadioComponent,
     SlideToggleComponent,
     HeaderComponent,
     DocumentListComponent,

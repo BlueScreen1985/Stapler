@@ -1,22 +1,22 @@
 <div class="header--container">
   <div class="header--content header--content__left-aligned">
     <stp-button (clicked)="newFile()">
-      <mat-icon>insert_drive_file</mat-icon>
+      <i class="material-icons">insert_drive_file</i>
     </stp-button>
     <stp-button (clicked)="addFiles()">
-      <mat-icon>library_add</mat-icon>
+      <i class="material-icons">library_add</i>
     </stp-button>
     <stp-button (clicked)="save()" *ngIf="route === '/main'">
-      <mat-icon>save</mat-icon>
+      <i class="material-icons">save</i>
     </stp-button>
   </div>
   <div class="header--content header--content__right-aligned">
     <span class="header--version-text" *ngIf="developerMode">{{ versionText }}</span>
     <stp-button (clicked)="openDevTools()" *ngIf="developerMode">
-      <mat-icon>code</mat-icon>
+      <i class="material-icons">code</i>
     </stp-button>
     <stp-button (clicked)="openSettings()">
-      <mat-icon>settings</mat-icon>
+      <i class="material-icons">settings</i>
     </stp-button>
   </div>
 </div>
