@@ -28,11 +28,9 @@
 
           <div class="menu-panel-input">
             <stp-input label="{{ 'main_page.source_list.item_menu.include_pages.input_label.range' | translate }}"
-              *ngIf="document.usePages === 'RANGE'" (valueChanged)="rangeInputChange(document, $event)"
-              [value]="getDocumentPageRange(document)"></stp-input>
+              *ngIf="document.usePages === 'RANGE'" [(ngModel)]="document.useRange"></stp-input>
             <stp-input label="{{ 'main_page.source_list.item_menu.include_pages.input_label.select' | translate }}"
-              *ngIf="document.usePages === 'SELECT'" (valueChanged)="pagesInputChange(document, $event)"
-              [value]="getDocumentPageSelection(document)"></stp-input>
+              *ngIf="document.usePages === 'SELECT'" [(ngModel)]="document.useSelection"></stp-input>
           </div>
 
           <stp-button [menuButton]="true" (clicked)="removeDocument(document)">

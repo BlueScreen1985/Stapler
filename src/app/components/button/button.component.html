@@ -1,3 +1,4 @@
-<div class="button--base" [ngClass]="'button--base__' + color + (menuButton ? ' menu-panel-item' : '')" matRipple (click)="click()">
+<div class="button--base" [ngClass]="'button--base__' + color + (menuButton ? ' menu-panel-item' : '') + (disabled ? ' button--base__disaled' : '')" stpRipple
+  [rippleColor]="color === 'accent' ? 'var(--contrast-pr-3)' : null" (click)="click()">
   <ng-content></ng-content>
 </div>

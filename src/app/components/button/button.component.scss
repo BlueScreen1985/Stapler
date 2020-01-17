@@ -43,6 +43,16 @@
   }
 }
 
+.button--base.button--base__disabled {
+  pointer-events: none;
+  color: var(--contrast-bg-3);
+
+  &.button--base__accent {
+    background-color: var(--color-primary-disabled);
+    color: var(--contrast-pr-3);
+  }
+}
+
 .material-icons + span {
   margin-left: 0.5em;
   margin-right: 0.5em;

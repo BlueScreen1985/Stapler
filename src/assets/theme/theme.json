@@ -8,6 +8,7 @@
 
       "--color-primary": "#c62828",
       "--color-primary-dark": "#9a0007",
+      "--color-primary-disabled": "rgba(198, 40, 40, 0.5)",
 
       "--contrast-bg-full": "rgba(0, 0, 0, 0.87)",
       "--contrast-bg-0": "rgba(0, 0, 0, 0.87)",
@@ -32,6 +33,7 @@
 
       "--color-primary": "#e53935",
       "--color-primary-dark": "#ba000d",
+      "--color-primary-disabled": "rgba(229, 57, 53, 0.5)",
 
       "--contrast-bg-full": "rgba(255, 255, 255, 1)",
       "--contrast-bg-0": "rgba(255, 255, 255, 0.94)",
@@ -56,6 +58,7 @@
 
       "--color-primary": "#c62828",
       "--color-primary-dark": "#9a0007",
+      "--color-primary-disabled": "rgba(198, 40, 40, 0.5)",
 
       "--contrast-bg-full": "rgba(255, 255, 255, 1)",
       "--contrast-bg-0": "rgba(255, 255, 255, 0.94)",

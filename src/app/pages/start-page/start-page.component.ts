@@ -8,23 +8,12 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: 'start-page.component.html',
   styleUrls: ['start-page.component.scss']
 })
-export class StartPageComponent implements OnInit {
-
-  public dropUploaderStyle: any = { display: 'none' };
-
+export class StartPageComponent {
   constructor(
     private documentService: DocumentService,
     private router: Router,
     private theme: ThemeService
   ) { }
-
-  public ngOnInit() {
-    // Show the drop uploader when dragging into the window
-    window.addEventListener('dragenter', (e: any) => {
-      e.preventDefault();
-      this.dropUploaderStyle = {};
-    });
-  }
 
   public newFile() {
     this.documentService.newProject()
@@ -34,9 +23,5 @@ export class StartPageComponent implements OnInit {
   public addFiles(files: File[]) {
     this.documentService.addDocuments(files)
     .then(() => this.router.navigate(['/main']));
-  }
-
-  public hideUploader() {
-    this.dropUploaderStyle = { display: 'none' };
   }
 }

@@ -5,5 +5,17 @@
     <router-outlet></router-outlet>
   </div>
 
+  <div stpDropUploader (fileDropped)="addFiles($event)" (dragLeave)="hideUploader()" [ngStyle]="dropUploaderStyle">
+    <div class="app--uploader-visual">
+      <svg class="app--uploader-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <path d="M51,21,39,9H15a2,2,0,0,0-2,2V53a2,2,0,0,0,2,2H49a2,2,0,0,0,2-2Z" />
+        <path d="M39,9V19a2,2,0,0,0,2,2H51" />
+        <line x1="24" y1="32" x2="40" y2="32" />
+        <line x1="32" y1="24" x2="32" y2="40" />
+      </svg>
+      {{ 'start.actions.drag_add' | translate }}
+    </div>
+  </div>
+
   <div class="app--loading-overlay" [ngClass]="working ? 'app--loading-overlay__active' : ''"></div>
 </div>

@@ -30,3 +30,58 @@
   height: 100vh;
   background-color: var(--color-bg-half);
 }
+
+.drop-uploader--container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  &.drop-uploader--container__dropping {
+    .app--uploader-visual {
+      opacity: var(--opacity-full);
+    }
+  }
+}
+
+.app--uploader-visual {
+  transition: opacity var(--animation-long) ease;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+
+  background-color: var(--color-bg);
+  color: var(--contrast-bg-2);
+  opacity: 0;
+}
+
+.app--uploader-icon {
+  width: 128px;
+  height: 128px;
+
+  opacity: var(--opacity-3);
+
+  // SVG properties
+  fill: none;
+  stroke: var(--contrast-bg-full);
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+}

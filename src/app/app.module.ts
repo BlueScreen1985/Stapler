@@ -8,21 +8,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 // Angular CDK imports
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-// Angular Material imports
-import { MatRippleModule } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSelectModule } from '@angular/material/select';
-
 // Misc imports
 import { NgxElectronModule } from 'ngx-electron';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -43,6 +28,7 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { SelectComponent } from './components/select/select.component';
 import { RadioComponent } from './components/radio/radio.component';
+import { RippleDirective } from './directives/ripple.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     DropUploaderDirective,
+    RippleDirective,
     ButtonComponent,
     InputComponent,
     SelectComponent,
@@ -71,19 +58,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     FormsModule,
     DragDropModule,
-    MatRippleModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatRadioModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSlideToggleModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-    MatSelectModule,
     NgxElectronModule,
     TranslateModule.forRoot({
       loader: {

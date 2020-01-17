@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent {
   @Input() public color: 'basic' | 'accent' = 'basic';
   @Input() public menuButton: boolean = false;
+  @Input() public disabled: boolean = false;
   @Output() public clicked: EventEmitter<void> = new EventEmitter();
 
   public click(): void {
